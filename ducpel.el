@@ -5,7 +5,7 @@
 ;; Author: Alex Kost <alezost@gmail.com>
 ;; Created: 31 Mar 2014
 ;; Version: 0.1
-;; Package-Requires: ((cl-lib "0.5"))
+;; Package-Requires: ((emacs "29.1"))
 ;; URL: https://github.com/alezost/ducpel
 ;; Keywords: games
 
@@ -1223,34 +1223,34 @@ signal an error."
 
 ;;; Major mode
 
-(defvar ducpel-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map "R"            'ducpel-restart-level)
-    (define-key map "F"            'ducpel-load-level-from-file)
-    (define-key map "L"            'ducpel-goto-level)
-    (define-key map "N"            'ducpel-next-level)
-    (define-key map "P"            'ducpel-previous-level)
-    (define-key map "u"            'ducpel-undo)
-    (define-key map "\C-_"         'ducpel-undo)
-    (define-key map [(control ?/)] 'ducpel-undo)
-    (define-key map "\t"           'ducpel-next-man)
-    (define-key map "\e\t"         'ducpel-previous-man)
-    (define-key map [backtab]      'ducpel-previous-man)
-    (define-key map " "            'ducpel-action)
-    (define-key map "b"            'ducpel-move-left)
-    (define-key map "f"            'ducpel-move-right)
-    (define-key map "p"            'ducpel-move-up)
-    (define-key map "n"            'ducpel-move-down)
-    (define-key map [left]         'ducpel-move-left)
-    (define-key map [right]        'ducpel-move-right)
-    (define-key map [up]           'ducpel-move-up)
-    (define-key map [down]         'ducpel-move-down)
-    (define-key map "rc"           'ducpel-replay-current)
-    (define-key map "rf"           'ducpel-replay-from-file)
-    (define-key map "rS"           'ducpel-replay-solution)
-    (define-key map "rs"           'ducpel-save-replay)
-    map)
-  "Keymap for `ducpel-mode'.")
+(defvar-keymap ducpel-mode-map
+  :doc "Keymap for `ducpel-mode'."
+  "SPC" #'ducpel-action
+  "TAB" #'ducpel-next-man
+  "M-<tab>" #'ducpel-previous-man
+  "<backtab>" #'ducpel-previous-man
+  "R"   #'ducpel-restart-level
+  "F"   #'ducpel-load-level-from-file
+  "L"   #'ducpel-goto-level
+  "N"   #'ducpel-next-level
+  "P"   #'ducpel-previous-level
+  "r c" #'ducpel-replay-current
+  "r f" #'ducpel-replay-from-file
+  "r S" #'ducpel-replay-solution
+  "r s" #'ducpel-save-replay
+  "b"   #'ducpel-move-left
+  "f"   #'ducpel-move-right
+  "p"   #'ducpel-move-up
+  "n"   #'ducpel-move-down
+  "u"   #'ducpel-undo
+  "<remap> <backward-char>" #'ducpel-move-left
+  "<remap> <left-char>"     #'ducpel-move-left
+  "<remap> <forward-char>"  #'ducpel-move-right
+  "<remap> <right-char>"    #'ducpel-move-right
+  "<remap> <previous-line>" #'ducpel-move-up
+  "<remap> <next-line>"     #'ducpel-move-down
+  "<remap> <undo>"          #'ducpel-undo
+  "<remap> <save-buffer>"   #'ducpel-save-replay)
 
 (define-derived-mode ducpel-mode special-mode "Ducpel"
   "Major mode for playing ducpel.
