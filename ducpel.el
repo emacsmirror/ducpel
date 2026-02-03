@@ -89,7 +89,8 @@ To replay the moves, use
 
 (defcustom ducpel-levels-directory
   (expand-file-name "levels"
-                    (file-name-directory (locate-library "ducpel")))
+                    (file-name-directory
+                     (file-truename load-file-name)))
   "Directory with level files."
   :type 'directory
   :group 'ducpel)
