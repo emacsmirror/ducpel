@@ -1,6 +1,6 @@
 ;;; ducpel-glyphs.el --- Default ducpel glyphs
 
-;; Copyright (C) 2014 Alex Kost
+;; Copyright © 2014, 2026 Alex Kost
 
 ;; Author: Alex Kost <alezost@gmail.com>
 ;; Created: 29 Mar 2014
@@ -9,11 +9,14 @@
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
-
+;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -132,7 +135,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 
 ;;; Empty cell
 
-(defvar ducpel-glyphs-empty-xpm-data "
+(defvar ducpel-glyphs-empty-xpm-data "\
 ################################
 ################################
 ################################
@@ -168,7 +171,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 
 ;;; Wall
 
-(defvar ducpel-glyphs-wall-xpm-data "
+(defvar ducpel-glyphs-wall-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@++++++++++++++++++++++++++@@@
 @+@@++++++++++++++++++++++++@@=@
@@ -204,7 +207,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 
 ;;; Floors
 
-(defvar ducpel-glyphs-floor-simple-xpm-data "
+(defvar ducpel-glyphs-floor-simple-xpm-data "\
 ################################
 ################################
 ################################
@@ -238,7 +241,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-exit-xpm-data "
+(defvar ducpel-glyphs-floor-exit-xpm-data "\
 ################################
 ################################
 ################################
@@ -272,7 +275,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-teleport-xpm-data "
+(defvar ducpel-glyphs-floor-teleport-xpm-data "\
 ################################
 ################################
 ################################
@@ -306,7 +309,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-left-xpm-data "
+(defvar ducpel-glyphs-floor-left-xpm-data "\
 ################################
 ################################
 ################################
@@ -340,7 +343,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-right-xpm-data "
+(defvar ducpel-glyphs-floor-right-xpm-data "\
 ################################
 ################################
 ################################
@@ -374,7 +377,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-up-xpm-data "
+(defvar ducpel-glyphs-floor-up-xpm-data "\
 ################################
 ################################
 ################################
@@ -408,7 +411,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-down-xpm-data "
+(defvar ducpel-glyphs-floor-down-xpm-data "\
 ################################
 ################################
 ################################
@@ -442,7 +445,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-horizontal-xpm-data "
+(defvar ducpel-glyphs-floor-horizontal-xpm-data "\
 ################################
 ################################
 ################################
@@ -476,7 +479,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-vertical-xpm-data "
+(defvar ducpel-glyphs-floor-vertical-xpm-data "\
 ################################
 ################################
 ################################
@@ -510,7 +513,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-floor-multi-xpm-data "
+(defvar ducpel-glyphs-floor-multi-xpm-data "\
 ################################
 ################################
 ################################
@@ -546,7 +549,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 
 ;;; Men
 
-(defvar ducpel-glyphs-man-simple-xpm-data "
+(defvar ducpel-glyphs-man-simple-xpm-data "\
 ################################
 ################################
 ################################
@@ -580,7 +583,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-exit-xpm-data "
+(defvar ducpel-glyphs-man-exit-xpm-data "\
 ################################
 ################################
 ################################
@@ -614,7 +617,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-teleport-xpm-data "
+(defvar ducpel-glyphs-man-teleport-xpm-data "\
 ################################
 ################################
 ################################
@@ -648,7 +651,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-left-xpm-data "
+(defvar ducpel-glyphs-man-left-xpm-data "\
 ################################
 ################################
 ################################
@@ -682,7 +685,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-right-xpm-data "
+(defvar ducpel-glyphs-man-right-xpm-data "\
 ################################
 ################################
 ################################
@@ -716,7 +719,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-up-xpm-data "
+(defvar ducpel-glyphs-man-up-xpm-data "\
 ################################
 ################################
 ################################
@@ -750,7 +753,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-down-xpm-data "
+(defvar ducpel-glyphs-man-down-xpm-data "\
 ################################
 ################################
 ################################
@@ -784,7 +787,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-horizontal-xpm-data "
+(defvar ducpel-glyphs-man-horizontal-xpm-data "\
 ################################
 ################################
 ################################
@@ -818,7 +821,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-vertical-xpm-data "
+(defvar ducpel-glyphs-man-vertical-xpm-data "\
 ################################
 ################################
 ################################
@@ -852,7 +855,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ####@((((((((((((((((((((((((((@
 ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-man-multi-xpm-data "
+(defvar ducpel-glyphs-man-multi-xpm-data "\
 ################################
 ################################
 ################################
@@ -888,7 +891,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 
 ;;; Boxes
 
-(defvar ducpel-glyphs-box-simple-xpm-data "
+(defvar ducpel-glyphs-box-simple-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -922,7 +925,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-exit-xpm-data "
+(defvar ducpel-glyphs-box-exit-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -956,7 +959,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-teleport-xpm-data "
+(defvar ducpel-glyphs-box-teleport-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -990,7 +993,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-left-xpm-data "
+(defvar ducpel-glyphs-box-left-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -1024,7 +1027,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-right-xpm-data "
+(defvar ducpel-glyphs-box-right-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -1058,7 +1061,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-up-xpm-data "
+(defvar ducpel-glyphs-box-up-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -1092,7 +1095,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-down-xpm-data "
+(defvar ducpel-glyphs-box-down-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -1126,7 +1129,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-horizontal-xpm-data "
+(defvar ducpel-glyphs-box-horizontal-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -1160,7 +1163,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-vertical-xpm-data "
+(defvar ducpel-glyphs-box-vertical-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -1194,7 +1197,7 @@ TYPE (`ducpel-glyphs-...-colors') or from
 ##@@//////////////////////////@@
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-(defvar ducpel-glyphs-box-multi-xpm-data "
+(defvar ducpel-glyphs-box-multi-xpm-data "\
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@###
 @))))))))))))))))))))))))))@@@##
 @))))))))))))))))))))))))))@/@@#
@@ -1312,14 +1315,19 @@ UNIQUE-CHARS is a list of all characters the DATA contains."
 For the meaning of DATA, see `ducpel-glyphs-get-image-params'.
 COLORS is alist of characters used in DATA and color values.
 WIDTH x HEIGHT is a size of the image."
-  (let* ((vals (format "%d %d %d 1"
-                       width height (length colors)))
-         (colors (mapconcat
-                  (lambda (assoc)
-                    (format "%c c %s" (car assoc) (cdr assoc)))
-                  colors
-                  "\n"))
-         (spec (format "! XPM2\n%s\n%s%s" vals colors data)))
+  (let* ((vals   (format "\"%d %d %d 1\",\n"
+                         width height (length colors)))
+         (colors (mapconcat (lambda (assoc)
+                              (format "\"%c c %s\",\n"
+                                      (car assoc) (cdr assoc)))
+                            colors
+                            ""))
+         (data   (mapconcat (lambda (line)
+                              (concat "\"" line "\""))
+                            (split-string data "\n")
+                            ",\n"))
+         (spec   (concat "/* XPM */\nstatic char *image[] = {\n"
+                         vals colors data "};")))
     `((:type xpm :ascent center :data ,spec))))
 
 (defun ducpel-glyphs-get-image-spec-by-plist (&rest plist)
