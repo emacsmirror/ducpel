@@ -1,6 +1,6 @@
-;;; ducpel.el --- Logic game with sokoban elements
+;;; ducpel.el --- Logic game with sokoban elements  -*- lexical-binding: t -*-
 
-;; Copyright (C) 2014 Alex Kost
+;; Copyright © 2014, 2026 Alex Kost
 
 ;; Author: Alex Kost <alezost@gmail.com>
 ;; Created: 31 Mar 2014
@@ -13,12 +13,12 @@
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
-
+;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
-
+;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
