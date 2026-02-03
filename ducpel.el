@@ -339,7 +339,7 @@ Properties in property lists:
   "Fill `ducpel-cell-plists'."
   (cl-flet ((pset (&rest plist)
                   (aset ducpel-cell-plists
-                        (apply 'ducpel-get-cell-char-by-plist plist)
+                        (apply #'ducpel-get-cell-char-by-plist plist)
                         plist)))
     (pset :type ducpel-empty)
     (pset :type ducpel-wall)
@@ -366,7 +366,7 @@ Properties in property lists:
   "Set cell at X, Y to the cell defined by property list PLIST.
 Return cell character of the set cell."
   (let* ((old-char (gamegrid-get-cell x y))
-         (new-char (apply 'ducpel-get-cell-char-by-plist plist)))
+         (new-char (apply #'ducpel-get-cell-char-by-plist plist)))
     (gamegrid-set-cell x y new-char)
     (push (list x y old-char) ducpel-undo-current-cells)
     new-char))
@@ -464,7 +464,7 @@ Returning value is a list of the form (X Y)."
 
 (defun ducpel-get-active-cell-plist ()
   "Return cell plist of the cell with the active man."
-  (apply 'ducpel-get-cell-plist-by-xy
+  (apply #'ducpel-get-cell-plist-by-xy
          (ducpel-get-active-cell-xy)))
 
 (defun ducpel-next-man ()
@@ -511,7 +511,7 @@ Return non-nil if the action was successful."
       (setq success t))
      ((eql floor ducpel-teleport)
       (if (null (cdr ducpel-teleports))
-          ;; If a single teleport on the map
+          ;; If a single teleport on the map.
           (message "This strange thing looks broken.")
         (if (ducpel-teleport-active-man)
             (setq success t)
@@ -563,7 +563,7 @@ Cell is free if it is a floor with no object (man or box) on it.
 Return nil if none of the cells is free."
   (cl-loop for cell in cells
            if (eql (plist-get
-                    (apply 'ducpel-get-cell-plist-by-xy cell)
+                    (apply #'ducpel-get-cell-plist-by-xy cell)
                     :type)
                    ducpel-floor)
            return cell))
@@ -689,7 +689,7 @@ Return non-nil if the shift was successful, nil otherwise."
                              ducpel-from-char))
          (ducpel-from-type (plist-get ducpel-from-plist :type))
          success)
-    ;; Most cell types can't be moved
+    ;; Most cell types can't be moved.
     (unless (memql ducpel-from-type
                    (list ducpel-empty ducpel-wall
                          ducpel-impassable ducpel-floor))
@@ -729,7 +729,7 @@ Return non-nil if the shift was successful, nil otherwise."
               (when new-from-plist
                 (ducpel-set-man-xy ducpel-from-x ducpel-from-y
                                    ducpel-to-x ducpel-to-y)
-                (apply 'ducpel-set-cell
+                (apply #'ducpel-set-cell
                        ducpel-from-x ducpel-from-y new-from-plist)
                 (setq success t))))
 
@@ -826,7 +826,7 @@ return non-nil."
   "Undo changes from CELLS, MEN, ACTIVE and TELEPORTS.
 For the meaning of arguments, see `ducpel-undo-list'."
   (mapc (lambda (change)
-          (apply 'gamegrid-set-cell change))
+          (apply #'gamegrid-set-cell change))
         cells)
   (dotimes (i (length men))
     (let ((man (aref men i)))
@@ -840,7 +840,7 @@ For the meaning of arguments, see `ducpel-undo-list'."
 (defun ducpel-undo ()
   "Undo previous move or action."
   (interactive)
-  ;; Undo possible switching of the men made since the last move
+  ;; Undo possible switching of the men made since the last move.
   (ducpel-undo-changes ducpel-undo-current-cells
                        ducpel-undo-current-men
                        ducpel-undo-current-active-index
@@ -903,7 +903,7 @@ Interactively, prompt for FILE."
             "(setq ducpel-moves-history '")
     (princ ducpel-moves-history (current-buffer))
     (insert ")\n")
-    (set (make-local-variable 'version-control) 'never)
+    (setq-local version-control 'never)
     (write-file file t)))
 
 
@@ -925,7 +925,7 @@ Gamegrid specifications are lists of the form:
 They are used for `gamegrid-display-options' (see
 `gamegrid-initialize-display' for details).")
 
-;; Avoid compilation warning about `ducpel-glyphs-default'
+;; Avoid compilation warning about `ducpel-glyphs-default'.
 (declare-function ducpel-glyphs-default "ducpel-glyphs" nil)
 
 (defun ducpel-get-glyphs ()
@@ -941,7 +941,7 @@ They are used for `gamegrid-display-options' (see
         (glyph-alist (ducpel-get-glyphs)))
     (dolist (assoc glyph-alist)
       (aset options
-            (apply 'ducpel-get-cell-char-by-plist (car assoc))
+            (apply #'ducpel-get-cell-char-by-plist (car assoc))
             (cdr assoc)))
     options))
 
@@ -958,7 +958,7 @@ DY is a number of line after `ducpel-height'."
   (goto-char (point-min))
   (let ((lines (forward-line (+ ducpel-height dy)))
         (inhibit-read-only t))
-    ;; Go to the line even if it does not exist
+    ;; Go to the line even if it does not exist.
     (insert (make-string lines ?\n))
     (delete-region (point) (line-end-position))
     (insert string)
@@ -1046,7 +1046,7 @@ DY is a number of line after `ducpel-height'."
 
 (defun ducpel-get-cell-char-by-map-chars (map-char obj-char)
   "Return cell type character by MAP-CHAR and OBJ-CHAR characters."
-  (apply 'ducpel-get-cell-char-by-plist
+  (apply #'ducpel-get-cell-char-by-plist
          (ducpel-get-cell-plist-by-map-chars map-char obj-char)))
 
 (defun ducpel-parse-solution ()
@@ -1086,7 +1086,7 @@ Set the following variables: `ducpel-level-data',
           (objects (ducpel-parse-map ducpel-objects-re))
           (height 0)
           (width 0))
-      ;; Define height and width of the data array
+      ;; Define height and width of the data array.
       (dolist (line map)
         (cl-incf height)
         (let ((w (length line)))
@@ -1095,7 +1095,7 @@ Set the following variables: `ducpel-level-data',
       (setq ducpel-level-data (make-vector height nil)
             ducpel-width width
             ducpel-height height)
-      ;; Fill the data array
+      ;; Fill the data array.
       (cl-loop for map-line in map
                for objects-line in objects
                for y from 0
@@ -1132,7 +1132,7 @@ Set `ducpel-men', `ducpel-active-man-index' and
                 (push (list x y) ducpel-teleports))))
             (gamegrid-set-cell x y char)))))
     (setq ducpel-men
-          (apply 'vector (nreverse men)))))
+          (apply #'vector (nreverse men)))))
 
 
 ;;; UI for levels
@@ -1255,9 +1255,10 @@ signal an error."
   "Major mode for playing ducpel.
 
 \\{ducpel-mode-map}"
-  (set (make-local-variable 'gamegrid-use-glyphs) ducpel-use-glyphs)
-  ;; hl-line disturbs if `ducpel-use-glyphs' is nil
-  (set (make-local-variable 'global-hl-line-mode) nil)
+  (setq gamegrid-use-glyphs ducpel-use-glyphs
+        show-trailing-whitespace nil)
+  ;; hl-line disturbs if `ducpel-use-glyphs' is nil.
+  (setq-local global-hl-line-mode nil)
   (gamegrid-init (ducpel-get-display-options)))
 
 ;;;###autoload

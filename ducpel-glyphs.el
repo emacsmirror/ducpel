@@ -1335,7 +1335,7 @@ WIDTH x HEIGHT is a size of the image."
 Returning value is defined by applying
 `ducpel-glyphs-get-image-spec' to the image data from
 `ducpel-glyphs-...-xpm-data'."
-  (let ((data (apply 'ducpel-glyphs-get-image-data-by-plist plist)))
+  (let ((data (apply #'ducpel-glyphs-get-image-data-by-plist plist)))
     (cl-multiple-value-bind (width height unique-chars)
         (ducpel-glyphs-get-image-params data)
       (ducpel-glyphs-get-image-spec
@@ -1362,8 +1362,8 @@ Returning value is a list intended to be an element of
 (defun ducpel-glyphs-get-gamegrid-spec-by-plist (&rest plist)
   "Return a proper gamegrid specification by cell PLIST."
   (ducpel-glyphs-get-gamegrid-spec
-   (apply 'ducpel-glyphs-get-image-spec-by-plist plist)
-   (apply 'ducpel-glyphs-get-char-by-plist plist)))
+   (apply #'ducpel-glyphs-get-image-spec-by-plist plist)
+   (apply #'ducpel-glyphs-get-char-by-plist plist)))
 
 (defun ducpel-glyphs-default ()
   "Return alist of default glyph specifications.
@@ -1372,21 +1372,21 @@ Cdr is a specification of a gamegrid glyph."
   (let (alist)
     (cl-flet ((push-spec (&rest plist)
                 (push (cons plist
-                            (apply 'ducpel-glyphs-get-gamegrid-spec-by-plist
+                            (apply #'ducpel-glyphs-get-gamegrid-spec-by-plist
                                    plist))
                       alist)))
-    (dolist (type ducpel-cell-types)
-      (cond
-       ((memql type (list ducpel-empty ducpel-wall ducpel-impassable))
-        (push-spec :type type))
-       ((memql type (list ducpel-floor ducpel-man ducpel-active-man))
-        (dolist (floor ducpel-floor-types)
-          (push-spec :type type :floor floor)))
-       ((eql type ducpel-box)
-        (dolist (box ducpel-floor-types)
+      (dolist (type ducpel-cell-types)
+        (cond
+         ((memql type (list ducpel-empty ducpel-wall ducpel-impassable))
+          (push-spec :type type))
+         ((memql type (list ducpel-floor ducpel-man ducpel-active-man))
           (dolist (floor ducpel-floor-types)
-            (push-spec :type type :floor floor :box box))))
-       (t (message "Warning: Unknown ducpel cell type %s." type)))))
+            (push-spec :type type :floor floor)))
+         ((eql type ducpel-box)
+          (dolist (box ducpel-floor-types)
+            (dolist (floor ducpel-floor-types)
+              (push-spec :type type :floor floor :box box))))
+         (t (message "Warning: Unknown ducpel cell type %s." type)))))
     alist))
 
 (provide 'ducpel-glyphs)
