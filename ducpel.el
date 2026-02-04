@@ -39,7 +39,7 @@
 ;;
 ;;   (setq ducpel-levels-directory "/path/to/ducpel-levels-dir")
 
-;; After that you can "M-x ducpel" and enjoy.  Use:
+;; After that, you can call "M-x ducpel" and enjoy.  Use:
 ;;
 ;; - arrow keys to move your man;
 ;; - TAB to switch to another man;
@@ -539,24 +539,23 @@ Return non-nil, if teleportation was successful."
         (error "Active man is not on the teleport cell"))
     ;; Getting next free teleport: if the rest teleports are blocked,
     ;; continue searching from the beginning of `ducpel-teleports'.
-    (let ((xy (or (ducpel-teleport-get-free-cell (cdr next-teleports))
-                  (ducpel-teleport-get-free-cell
-                   (cl-loop for teleport in ducpel-teleports
-                            until (equal teleport active-xy)
-                            collect teleport)))))
-      (when xy
-        (let ((from-x (car active-xy))
-              (from-y (cadr active-xy))
-              (to-x (car xy))
-              (to-y (cadr xy)))
-          (ducpel-set-cell
-           to-x to-y
-           :type ducpel-active-man :floor ducpel-teleport)
-          (ducpel-set-cell
-           from-x from-y
-           :type ducpel-floor :floor ducpel-teleport)
-          (ducpel-set-man-xy from-x from-y to-x to-y)
-          t)))))
+    (when-let* ((xy (or (ducpel-teleport-get-free-cell (cdr next-teleports))
+                        (ducpel-teleport-get-free-cell
+                         (cl-loop for teleport in ducpel-teleports
+                                  until (equal teleport active-xy)
+                                  collect teleport)))))
+      (let ((from-x (car active-xy))
+            (from-y (cadr active-xy))
+            (to-x (car xy))
+            (to-y (cadr xy)))
+        (ducpel-set-cell
+         to-x to-y
+         :type ducpel-active-man :floor ducpel-teleport)
+        (ducpel-set-cell
+         from-x from-y
+         :type ducpel-floor :floor ducpel-teleport)
+        (ducpel-set-man-xy from-x from-y to-x to-y)
+        t))))
 
 (defun ducpel-teleport-get-free-cell (cells)
   "Return first free cell from a list of coordinates CELLS.
@@ -574,9 +573,8 @@ Return nil if none of the cells is free."
 Direction should have a value of one of the following constants:
 `ducpel-left-move', `ducpel-right-move',
 `ducpel-up-move', `ducpel-down-move'."
-  (let ((moves (cdr (assoc floor-type ducpel-move-type-alist))))
-    (and moves
-         (/= 0 (logand moves direction)))))
+  (when-let* ((moves (cdr (assoc floor-type ducpel-move-type-alist))))
+    (/= 0 (logand moves direction))))
 
 (defun ducpel-get-xy (from-x from-y direction &optional val)
   "Return coordinates by shifting FROM-X, FROM-Y to the DIRECTION by VAL.
@@ -832,9 +830,8 @@ For the meaning of arguments, see `ducpel-undo-list'."
           (apply #'gamegrid-set-cell change))
         cells)
   (dotimes (i (length men))
-    (let ((man (aref men i)))
-      (and man
-           (aset ducpel-men i man))))
+    (when-let* ((man (aref men i)))
+      (aset ducpel-men i man)))
   (and active
        (setq ducpel-active-man-index active))
   (and teleports
@@ -849,14 +846,13 @@ For the meaning of arguments, see `ducpel-undo-list'."
                        ducpel-undo-current-active-index
                        ducpel-undo-current-teleports)
   (ducpel-undo-reset-current)
-  ;; Undo the last move
-  (let ((move-changes (pop ducpel-undo-list)))
-    (when move-changes
-      (apply 'ducpel-undo-changes move-changes)
-      (ducpel-remove-move)
-      (pop ducpel-moves-history)
-      (ducpel-check-done)
-      (ducpel-print-done))))
+  ;; Undo the last move.
+  (when-let* ((move-changes (pop ducpel-undo-list)))
+    (apply #'ducpel-undo-changes move-changes)
+    (ducpel-remove-move)
+    (pop ducpel-moves-history)
+    (ducpel-check-done)
+    (ducpel-print-done)))
 
 
 ;;; Replaying
@@ -1120,20 +1116,19 @@ Set `ducpel-men', `ducpel-active-man-index' and
   (let (men)
     (dotimes (y ducpel-height)
       (dotimes (x ducpel-width)
-        (let ((char (aref (aref ducpel-level-data y) x)))
-          (when char
-            (let* ((plist (ducpel-get-cell-plist-by-cell-char char))
-                   (type (plist-get plist :type)))
-              (cond
-               ((eql type ducpel-man)
-                (push (list x y) men))
-               ((eql type ducpel-active-man)
-                (push (list x y) men)
-                (setq ducpel-active-man-index
-                      (- (length men) 1)))
-               ((eql (plist-get plist :floor) ducpel-teleport)
-                (push (list x y) ducpel-teleports))))
-            (gamegrid-set-cell x y char)))))
+        (when-let* ((char (aref (aref ducpel-level-data y) x)))
+          (let* ((plist (ducpel-get-cell-plist-by-cell-char char))
+                 (type (plist-get plist :type)))
+            (cond
+             ((eql type ducpel-man)
+              (push (list x y) men))
+             ((eql type ducpel-active-man)
+              (push (list x y) men)
+              (setq ducpel-active-man-index
+                    (- (length men) 1)))
+             ((eql (plist-get plist :floor) ducpel-teleport)
+              (push (list x y) ducpel-teleports))))
+          (gamegrid-set-cell x y char))))
     (setq ducpel-men
           (apply #'vector (nreverse men)))))
 
