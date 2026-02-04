@@ -619,11 +619,13 @@ Returning value is a list of coordinates of the last empty cell."
 (defun ducpel-done-p (&optional show-message)
   "Return non-nil if current level is passed.
 If SHOW-MESSAGE is non-nil, also show a message in minibuffer."
-  (let ((done (= ducpel-done (length ducpel-men))))
-    (and done
-         show-message
-         ;; FIXME Do not hardcode the bindings
-         (message "DONE! Press 'r c' to replay, 'r s' to save, 'R' to restart, 'N' for the next level."))
+  (when-let* ((done (= ducpel-done (length ducpel-men))))
+    (when show-message
+      (message (substitute-command-keys "DONE! Press:
+\\[ducpel-replay-solution] to replay,
+\\[ducpel-save-replay] to save,
+\\[ducpel-restart-level] to restart,
+\\[ducpel-next-level] to start the next level.")))
     done))
 
 (defun ducpel-add-move ()
